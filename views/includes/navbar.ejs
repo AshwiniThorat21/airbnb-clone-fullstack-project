@@ -1,0 +1,96 @@
+<style>
+  .search-btn {
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+
+  .search-btn:hover {
+    background-color: #fe424d;
+    color: #fff;
+  }
+
+  .search-btn i {
+    display: inline;
+    margin-right: 0.5rem;
+
+  }
+
+  .search-input {
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 0.8;
+  }
+</style>
+
+
+
+
+
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <!--<a class="navbar-brand" href="/"><i class="fa-solid fa-compass"></i></a>-->
+    <a class="navbar-brand" href="/">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg" alt="Airbnb Logo"
+        style="height:40px;">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav ms-auto" style="flex-grow: 1;">
+        <form class="d-flex align-items-center gap-2" action="/listings/search" method="GET"
+          style="max-width: 900px; margin: auto;">
+          <!-- Search -->
+          <input class="form-control search-input" name="q" type="search" placeholder="Search destination"
+            style="border-radius: 25px; padding: 10px;" required />
+
+          <!-- Min Price -->
+          <input type="number" name="minPrice" class="form-control" placeholder="Min ₹"
+            style="width: 100px; border-radius: 25px;" />
+
+          <!-- Max Price -->
+          <input type="number" name="maxPrice" class="form-control" placeholder="Max ₹"
+            style="width: 100px; border-radius: 25px;" />
+
+          <!-- Sort -->
+          <select name="sort" class="form-select" style="width: 180px; border-radius: 25px;">
+            <option value="">Sort By</option>
+            <option value="priceAsc">Price: Low to High</option>
+            <option value="priceDesc">Price: High to Low</option>
+          </select>
+
+          <!-- Button -->
+          <button class="btn search-btn" type="submit"
+            style="border-radius: 25px; padding: 10px 20px; background-color: #fe424d; color: #fff;">
+            <i class="fa-solid fa-magnifying-glass"></i> Search
+          </button>
+        </form>
+      </div>
+
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airbnb Your Home</a>
+        <% if(!currUser){ %>
+          <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+
+          <%} %>
+
+            <% if(currUser){ %>
+              <a class="nav-link" href="/wishlist"><i class="fa-solid fa-heart text-danger"></i> Wishlist</a>
+              <a class="nav-link" href="/logout">Log Out</a>
+              <% } %>
+<!--❤️ -->
+
+      </div>
+    </div>
+  </div>
+</nav>

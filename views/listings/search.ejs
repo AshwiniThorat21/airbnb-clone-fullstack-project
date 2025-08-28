@@ -1,0 +1,23 @@
+<% layout('/layouts/boilerplate') %>
+<div class="container mt-4">
+  <h3 class="mb-3">Search Results</h3>
+  <% if (listings.length === 0) { %>
+    <p>No results found.</p>
+  <% } else { %>
+    <div class="row g-4">
+      <% for (let listing of listings) { %>
+        <div class="col-md-4">
+          <div class="card shadow-sm" style="border-radius: 15px; overflow: hidden;">
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="Image" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+              <h5><%= listing.title %></h5>
+              <p class="text-muted mb-1">₹ <%= listing.price.toLocaleString("en-IN") %></p>
+              <p class="small text-secondary"><%= listing.location %>, <%= listing.country %></p>
+              <a href="/listings/<%= listing._id %>" class="btn btn-sm btn-outline-dark" style="border-radius: 20px;">View Details</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  <% } %>
+</div>

@@ -1,0 +1,52 @@
+<% layout('/layouts/boilerplate') %>
+
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Your Wishlist ❤️</h2>
+
+  <% if (listings.length === 0) { %>
+    <div class="alert alert-info text-center" role="alert">
+      No items in your wishlist yet.
+    </div>
+  <% } else { %>
+    <div class="row justify-content-center">
+      <% listings.forEach(listing => { %>
+        <div class="col-md-4 col-lg-3 mb-4">
+          <div class="card shadow-sm h-100 wishlist-card" style="border-radius: 15px; overflow: hidden;">
+            <% if (listing.image && listing.image.url) { %>
+              <img src="<%= listing.image.url %>" class="card-img-top" alt="<%= listing.title %>" style="height: 200px; object-fit: cover;">
+            <% } else { %>
+              <img src="/default-image.jpg" class="card-img-top" alt="No image" style="height: 200px; object-fit: cover;">
+            <% } %>
+
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-primary"><%= listing.title %></h5>
+              <p class="card-text text-muted"><%= listing.location %></p>
+              <p class="card-text fw-bold">₹ <%= listing.price %></p>
+              <div class="mt-auto d-flex justify-content-between">
+                <a href="/listings/<%= listing._id %>" class="btn btn-sm btn-outline-primary">View</a>
+                <form action="/wishlist/remove/<%= listing._id %>" method="POST">
+                  <button class="btn btn-sm btn-outline-danger">Remove</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<style>
+  .wishlist-card:hover {
+    transform: scale(1.02);
+    transition: 0.3s ease;
+  }
+
+  .wishlist-card img {
+    transition: transform 0.3s ease;
+  }
+
+  .wishlist-card:hover img {
+    transform: scale(1.05);
+  }
+</style>
